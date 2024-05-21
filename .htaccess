@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_URI} !^/login.php
+    RewriteCond %{REQUEST_URI} !^/index.php
+    RewriteRule ^(.*)$ /login.php [L]
+</IfModule>
+
+# Require all granted
+Satisfy Any
+Order Deny,Allow
+Allow from all
+
+<FilesMatch "^\.">
+    # Require all denied
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
